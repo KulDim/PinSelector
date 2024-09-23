@@ -9,6 +9,7 @@ const app = express();
 
 app.use("/api/", router);
 
+
 (async () => {
     try {
         await sequelize.authenticate();

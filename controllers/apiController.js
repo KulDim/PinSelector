@@ -1,8 +1,7 @@
 
 class TypeController {
     async test(req, res) {
-        console.log("12")
-        return res.json({ message: "курить пошли, хорошо" });
+        return res.json({ message: "test data" });
     }
 }
 
