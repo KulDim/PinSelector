@@ -4,8 +4,10 @@ import "./AddMicrocontroller.css"
 
 function AddMicrocontroller(){
 
+    const [title, setTitle] = useState("")
+
     const [pins, setPin] = useState([
-        {"id": 1,"name": "vadim"},
+        {"id": 1,"name": ""},
         {"id": 2,"name": ""},
     ]);
 
@@ -15,26 +17,42 @@ function AddMicrocontroller(){
     };
 
     function inputChange(e) {
-        const id = e.target.getAttribute('data-id') - 1
+        const id = e.target.getAttribute('data-id')
         pins[id].name = e.target.value
         setPin(pins => [...pins])
     };
 
+    function sendButton() {
+        fetch("/api/add", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({"title": title, "pins": pins})
+        })
+        .then(response => response.json())
+        .then(data => responseCheck(data))
+    }
+
+    function responseCheck(data) {
+        console.log(data)
+    }
+
     return (
         <div>
             <div className="form">
-                <div><span>Название</span><input></input></div>
+                <div>
+                    <span>Название</span>
+                    <input value={title} onChange={e => setTitle(e.target.value)}></input>
+                </div>
 
                 {pins.map((pin) => (
                     <div key={pin.id}>
                         <span> пин {pin.id} </span>
-                        {/* value */}
-                        <input onChange={inputChange} data-id={pin.id}></input>
+                        <input onChange={inputChange} data-id={pin.id - 1} value={pin.name}></input>
                     </div> 
                 ))}
 
                 <button onClick={addButton}>Добавить пин</button>
-                <button>seve</button>
+                <button onClick={sendButton}>seve</button>
             </div>
         </div>
     );

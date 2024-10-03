@@ -3,6 +3,6 @@ const router = new Router();
 
 const apiRouter = require("./apiRouter");
 
-router.use("/test/", apiRouter);
+router.use("/add/", apiRouter);
 
 module.exports = router;
