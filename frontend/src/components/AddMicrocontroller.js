@@ -2,17 +2,22 @@ import React, {useState} from 'react';
 import "./AddMicrocontroller.css"
 
 
-
-
-
 function AddMicrocontroller(){
 
-    const [inputs, setInput] = useState([1]);
+    const [pins, setPin] = useState([
+        {"id": 1,"name": "vadim"},
+        {"id": 2,"name": ""},
+    ]);
 
-    function approach1Fn () {
-        const randomNum = inputs.push(1)
-        console.log(inputs)
-        setInput([randomNum]);
+    function addButton () {
+        const id = pins[pins.length - 1].id + 1
+        setPin(pins => [...pins, {"id": id,"name": ""}])
+    };
+
+    function inputChange(e) {
+        const id = e.target.getAttribute('data-id') - 1
+        pins[id].name = e.target.value
+        setPin(pins => [...pins])
     };
 
     return (
@@ -20,15 +25,16 @@ function AddMicrocontroller(){
             <div className="form">
                 <div><span>Название</span><input></input></div>
 
-                {inputs.map((input, index) => (
-                    <div key={index}>
-                        <span>{input} пин </span>
-                        <input></input>
-                    </div>
+                {pins.map((pin) => (
+                    <div key={pin.id}>
+                        <span> пин {pin.id} </span>
+                        {/* value */}
+                        <input onChange={inputChange} data-id={pin.id}></input>
+                    </div> 
                 ))}
 
-                <button onClick={approach1Fn}>Добавить пин</button>
-                <button>Созранить</button>
+                <button onClick={addButton}>Добавить пин</button>
+                <button>seve</button>
             </div>
         </div>
     );
