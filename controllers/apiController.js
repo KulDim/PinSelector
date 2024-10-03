@@ -1,8 +1,12 @@
 
 class TypeController {
-    async test(req, res) {
+    async addMicrocontroller(req, res) {
         console.log(req.body)
-        return res.json({ message: "test data" });
+
+        
+
+
+        return res.json({message: "Успех", status: 200});
     }
 }
 

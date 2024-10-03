@@ -33,7 +33,14 @@ function AddMicrocontroller(){
     }
 
     function responseCheck(data) {
-        console.log(data)
+        if (data.status == 200) {
+            console.log(data.message)
+            setTitle("")
+            setPin([
+                {"id": 1,"name": ""},
+                {"id": 2,"name": ""},
+            ])
+        }
     }
 
     return (
@@ -52,7 +59,7 @@ function AddMicrocontroller(){
                 ))}
 
                 <button onClick={addButton}>Добавить пин</button>
-                <button onClick={sendButton}>seve</button>
+                <button onClick={sendButton}>Сохранить</button>
             </div>
         </div>
     );
