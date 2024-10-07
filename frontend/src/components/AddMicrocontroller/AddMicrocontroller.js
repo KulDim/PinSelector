@@ -47,9 +47,9 @@ function AddMicrocontroller() {
     }
 
     return (
-        <div>
-            <div className="form">
-                <div>
+        <div className="form">
+            
+                <div className="form-item">
                     <span>Название</span>
                     <input
                         value={title}
@@ -57,7 +57,7 @@ function AddMicrocontroller() {
                     ></input>
                 </div>
 
-                <div>
+                <div className="form-item">
                     <span>Datasheet</span>
                     <input
                         value={datasheet}
@@ -65,7 +65,7 @@ function AddMicrocontroller() {
                     ></input>
                 </div>
 
-                <div>
+                <div className="form-item">
                     <span>Описание</span>
                     <input
                         value={description}
@@ -73,20 +73,20 @@ function AddMicrocontroller() {
                     ></input>
                 </div>
 
-                {pins.map(pin => (
-                    <div key={pin.id}>
-                        <span> пин {pin.id} </span>
-                        <input
-                            onChange={inputChange}
-                            data-id={pin.id - 1}
-                            value={pin.name}
-                        ></input>
-                    </div>
-                ))}
+                    {pins.map(pin => (
+                        <div key={pin.id} className="form-item">
+                            <span> пин {pin.id} </span>
+                            <input
+                                onChange={inputChange}
+                                data-id={pin.id - 1}
+                                value={pin.name}
+                            ></input>
+                        </div>
+                    ))}
 
                 <button onClick={addButton}>Добавить пин</button>
                 <button onClick={sendButton}>Сохранить</button>
-            </div>
+           
         </div>
     );
 }
