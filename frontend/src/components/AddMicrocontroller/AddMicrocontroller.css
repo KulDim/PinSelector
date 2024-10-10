@@ -24,11 +24,11 @@
 }
 
 .form-item span{
-    width: 200px;
+    /* width: 200px; */
 }
 
 .form-item input{
-    width: 100%;
+    /* width: 100%; */
     padding: 15px;
     font-size: 24px;
 }
