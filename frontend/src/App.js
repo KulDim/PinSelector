@@ -1,14 +1,12 @@
 import React from "react";
 
 import "./App.css";
-import AddMicrocontroller from "./components/AddMicrocontroller/AddMicrocontroller";
-import SearchMicrocontroller from "./components/SearchMicrocontroller/SearchMicrocontroller";
+import MainPage from "./pages/MainPage";
 
 function App() {
     return (
         <div className="App">
-            <SearchMicrocontroller />
-            {/* <AddMicrocontroller /> */}
+            <MainPage />
         </div>
     );
 }
