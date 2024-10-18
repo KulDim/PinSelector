@@ -4,10 +4,20 @@ import styles from "./SearchMicrocontroller.module.css";
 function SearchMicrocontroller() {
     const [quantity, setQuantity] = useState("");
 
-    const [pins, setPin] = useState([{ output: "", value: "" }]);
+    const [pins, setPin] = useState([
+        { output: "", value: "" },
+    ]);
 
     function addButton() {
         setPin(pins => [...pins, { output: "", value: "" }]);
+        // const sc = document.querySelector("." + styles.overflow)
+        // console.log(sc.getBoundingClientRect())
+        // // sc.scrollTo({
+        // //     top: 1000000000000000000000,
+        // //     left: 0,
+        // //     behavior: "smooth"
+        // //   })
+        // console.log(sc.offsetHeight)
     }
 
     function dellButton(e) {
@@ -28,7 +38,6 @@ function SearchMicrocontroller() {
             <div className={styles.formItem}>
                 <span>Количество выводов:</span>
                 <input
-                    type="number"
                     value={quantity}
                     onChange={e => setQuantity(e.target.value)}
                 ></input>
@@ -42,7 +51,6 @@ function SearchMicrocontroller() {
                     >
                         <span>Вывод:</span>
                         <input
-                            type="number"
                             value={pin.output}
                             name="output"
                             onChange={inputChange}
@@ -74,6 +82,7 @@ function SearchMicrocontroller() {
                     Добавить
                 </button>
             </div>
+            <div className={styles.resizable}></div>
         </div>
     );
 }
