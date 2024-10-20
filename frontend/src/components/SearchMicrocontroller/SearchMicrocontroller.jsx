@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import axios from 'axios'
 import styles from "./SearchMicrocontroller.module.css";
 
-function SearchMicrocontroller() {
+function SearchMicrocontroller({handleMicrocontrollers}) {
     const [quantity, setQuantity] = useState("");
 
     const [pins, setPin] = useState([
@@ -10,14 +11,6 @@ function SearchMicrocontroller() {
 
     function addButton() {
         setPin(pins => [...pins, { output: "", value: "" }]);
-        // const sc = document.querySelector("." + styles.overflow)
-        // console.log(sc.getBoundingClientRect())
-        // // sc.scrollTo({
-        // //     top: 1000000000000000000000,
-        // //     left: 0,
-        // //     behavior: "smooth"
-        // //   })
-        // console.log(sc.offsetHeight)
     }
 
     function dellButton(e) {
@@ -27,21 +20,37 @@ function SearchMicrocontroller() {
     }
 
     function inputChange(e) {
-        const name = e.target.name;
         const id = e.target.getAttribute("data-id");
-        pins[id][name] = e.target.value;
+        const name = e.target.name;
+        const value = e.target.value;
+        name === "output" ? pins[id][name] = value.replace(/[^0-9]/g, '') : pins[id][name] = value;
         setPin(pins => [...pins]);
+    }
+
+    function changeQuantity(e) {
+        const value = e.target.value.replace(/[^0-9]/g, '')
+        setQuantity(value)
+    }
+
+    function sendButton() {
+        axios.post("/api/searchMicrocontroller", {
+            quantity,
+            pins,
+        })
+        .then(response => response.data)
+        .then(data => handleMicrocontrollers(data));
     }
 
     return (
         <div className={styles.form}>
             <div className={styles.formItem}>
                 <span>Количество выводов:</span>
-                <input
+                <input 
                     value={quantity}
-                    onChange={e => setQuantity(e.target.value)}
+                    // !
+                    onChange={changeQuantity}
                 ></input>
-                <button className={styles.send}>Найти</button>
+                <button className={styles.send} onClick={sendButton}>Найти</button>
             </div>
             <div className={styles.overflow}>
                 {pins.map((pin, id) => (
