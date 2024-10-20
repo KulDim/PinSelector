@@ -3,7 +3,7 @@ const router = new Router();
 
 const Controller = require("../controllers/Controller");
 
-router.get("/addMicrocontroller", Controller.addMicrocontroller);
 router.post("/addMicrocontroller", Controller.addMicrocontroller);
+router.post("/searchMicrocontroller", Controller.searchMicrocontroller);
 
 module.exports = router;
