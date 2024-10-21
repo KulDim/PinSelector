@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import styles from "./ListMicrocontroller.module.css";
 
 function ListMicrocontroller({microcontrollers}) {
 
-    return <div>
+    return <div className={styles.test}>
         {microcontrollers.map((microcontroller, index) => (
             <div key={index}>
                 <span>title:{ microcontroller.title }</span>
