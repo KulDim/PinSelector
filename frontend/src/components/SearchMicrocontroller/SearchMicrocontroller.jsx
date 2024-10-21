@@ -3,6 +3,11 @@ import axios from 'axios'
 import styles from "./SearchMicrocontroller.module.css";
 
 function SearchMicrocontroller({handleMicrocontrollers}) {
+
+    const [quantityPlaceholderInput, setQuantityPlaceholderInput] = useState("")
+    const [error, setError] = useState(false)
+
+
     const [quantity, setQuantity] = useState("");
 
     const [pins, setPin] = useState([
@@ -33,6 +38,24 @@ function SearchMicrocontroller({handleMicrocontrollers}) {
     }
 
     function sendButton() {
+
+        if (quantity === "") {
+            setQuantityPlaceholderInput("Постое поле");
+            return;
+        }
+
+        let isError = false
+        pins.map(pin => {
+            if (pin.output === "" || pin.value === "") {
+                setError(true)
+                isError = true
+                return;
+            }
+        })
+        if (isError) return;
+        if (!isError) setError(false);
+
+
         axios.post("/api/searchMicrocontroller", {
             quantity,
             pins,
@@ -47,11 +70,13 @@ function SearchMicrocontroller({handleMicrocontrollers}) {
                 <span>Количество выводов:</span>
                 <input 
                     value={quantity}
-                    // !
                     onChange={changeQuantity}
+                    placeholder={quantityPlaceholderInput}
+                    onClick={e => setQuantityPlaceholderInput("")}
                 ></input>
                 <button className={styles.send} onClick={sendButton}>Найти</button>
             </div>
+            { error && <div className={styles.error}>Заполните все значение</div>}
             <div className={styles.overflow}>
                 {pins.map((pin, id) => (
                     <div
