@@ -1,8 +1,11 @@
 import styles from "./ListMicrocontroller.module.css";
 
-function ListMicrocontroller({microcontrollers}) {
+function ListMicrocontroller({microcontrollers, loading}) {
 
     return <div className={styles.test}>
+
+        {loading && <div className={styles.loadingBlock}> <div className={styles.loading}></div></div>}
+        
         {microcontrollers.map((microcontroller, index) => (
             <div key={index}>
                 <span>title:{ microcontroller.title }</span>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from 'axios'
 import styles from "./SearchMicrocontroller.module.css";
 
-function SearchMicrocontroller({handleMicrocontrollers}) {
+function SearchMicrocontroller({handleMicrocontrollers, setLoading}) {
 
     const [quantityPlaceholderInput, setQuantityPlaceholderInput] = useState("")
     const [error, setError] = useState(false)
@@ -54,6 +54,7 @@ function SearchMicrocontroller({handleMicrocontrollers}) {
         })
         if (isError) return;
         if (!isError) setError(false);
+        setLoading(true)
 
 
         axios.post("/api/searchMicrocontroller", {
