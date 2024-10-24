@@ -20,9 +20,7 @@ class TypeController {
     }
 
     async searchMicrocontroller(req, res) {
-        console.log(req.body)
         let microcontrollers = await modelsMicrocontrollers.findAll()
-        console.log(microcontrollers)
         return res.json({ message: microcontrollers, status: 200 });
     }
 }
