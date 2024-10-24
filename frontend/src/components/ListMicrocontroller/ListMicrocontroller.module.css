@@ -1,5 +1,46 @@
 
 
+.microcontrollers{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 0px 10px;
+    font-size: 18px;
+    border-top: 5px solid red;
+    box-shadow: -6px 9px 20px 4px rgba(34, 60, 80, 0.2);
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+.microcontroller{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: center;
+    padding: 5px 0;
+    margin: 5px 0;
+    border-top: 1px solid red;
+
+}
+
+.microcontroller button{
+    outline: none;
+    padding: 8px;
+    font-size: 16px;
+    color: #ffffffe8;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #0d6dfdda;
+    border: 1px solid #154da0;
+    padding: 8px;
+    font-size: 14px;
+    color: #ffffffe8;
+    border-radius: 5px;
+}
+
+.microcontroller span{
+    padding: 5px;
+}
+
 .loadingBlock{
     display: flex;
     margin: 0 auto;
@@ -25,3 +66,24 @@
         transform: rotate(360deg);
     }
 } 
+
+.input{
+ 
+    padding: 5px;
+    font-size: 16px;
+    margin: 10px;
+    outline: none;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #0000006c;
+}
+
+.input::placeholder {
+    font-weight: bold;
+    color: #000000;
+}
+
+.input:focus{
+    border: 1px solid #0d6dfd69;
+    border-radius: 6px;
+}
