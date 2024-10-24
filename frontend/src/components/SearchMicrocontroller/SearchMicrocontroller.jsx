@@ -54,6 +54,8 @@ function SearchMicrocontroller({handleMicrocontrollers, setLoading}) {
         })
         if (isError) return;
         if (!isError) setError(false);
+        
+        handleMicrocontrollers(null)
         setLoading(true)
 
 
