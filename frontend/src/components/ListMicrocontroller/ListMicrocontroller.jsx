@@ -1,6 +1,21 @@
+import { useEffect, useState } from "react";
 import styles from "./ListMicrocontroller.module.css";
 
 function ListMicrocontroller({ microcontrollers, loading }) {
+    const [search, setSearch] = useState("");
+    const [data, setData] = useState(microcontrollers);
+
+    useEffect(() => {
+        if(microcontrollers) {
+            setData(microcontrollers.filter(item => item.title.includes(search)))
+        }
+    }, [search]);
+
+
+    function info(id) {
+        alert("id " + id)
+    }
+
     return (
         <div>
             {loading && (
@@ -14,9 +29,11 @@ function ListMicrocontroller({ microcontrollers, loading }) {
                     <input
                         className={styles.input}
                         type="text"
-                        placeholder="поиск"
+                        placeholder="поиск по title"
+                        value={search}
+                        onChange={e => setSearch(e.target.value)}
                     />
-                    {microcontrollers.map((microcontroller, index) => (
+                    {data.map((microcontroller, index) => (
                         <div
                             key={index}
                             className={styles.microcontroller}
@@ -28,7 +45,7 @@ function ListMicrocontroller({ microcontrollers, loading }) {
                             <span>
                                 <span>description: {microcontroller.description}</span>
                             </span>
-                            <button>Подробней</button>
+                            <button >Подробней</button>
                         </div>
                     ))}
                 </div>
