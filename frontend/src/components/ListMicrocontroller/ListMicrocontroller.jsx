@@ -6,15 +6,14 @@ function ListMicrocontroller({ microcontrollers, loading }) {
     const [data, setData] = useState(microcontrollers);
 
     useEffect(() => {
-        if(microcontrollers) {
-            setData(microcontrollers.filter(item => item.title.includes(search)))
+        setData(microcontrollers);
+    }, [microcontrollers]);
+
+    useEffect(() => {
+        if (microcontrollers) {
+            setData(microcontrollers.filter(item => item.title.includes(search)));
         }
     }, [search]);
-
-
-    function info(id) {
-        alert("id " + id)
-    }
 
     return (
         <div>
@@ -24,7 +23,7 @@ function ListMicrocontroller({ microcontrollers, loading }) {
                 </div>
             )}
 
-            {microcontrollers && (
+            {data && (
                 <div className={styles.microcontrollers}>
                     <input
                         className={styles.input}
@@ -33,21 +32,23 @@ function ListMicrocontroller({ microcontrollers, loading }) {
                         value={search}
                         onChange={e => setSearch(e.target.value)}
                     />
-                    {data.map((microcontroller, index) => (
-                        <div
-                            key={index}
-                            className={styles.microcontroller}
-                        >
-                            <span>
-                                <span>title: {microcontroller.title}</span>
-                                <span>datasheet: {microcontroller.datasheet}</span>
-                            </span>
-                            <span>
-                                <span>description: {microcontroller.description}</span>
-                            </span>
-                            <button >Подробней</button>
-                        </div>
-                    ))}
+                    {data &&
+                        data.map((microcontroller, index) => (
+                            <div
+                                key={index}
+                                className={styles.microcontroller}
+                            >
+                                <span>
+                                    <span>title: {microcontroller.title}</span>
+                                    <span>datasheet: {microcontroller.datasheet}</span>
+                                </span>
+                                <span>
+                                    <span>description: {microcontroller.description}</span>
+                                </span>
+                                <button>Подробней</button>
+                            </div>
+                        ))}
+                    {data.length == 0 && <div>Пусто</div>}
                 </div>
             )}
         </div>
