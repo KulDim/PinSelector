@@ -1,11 +1,13 @@
 import SearchMicrocontroller from "../components/SearchMicrocontroller/SearchMicrocontroller";
 import ListMicrocontroller from "../components/ListMicrocontroller/ListMicrocontroller";
+import PopUp from "../components/PopUp/PopUp";
 import styles from "./MainPage.module.css";
 import { useState } from "react";
 
 function MainPage() {
     const [microcontrollers, setMicrocontrollers] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [popup, setPopup] = useState(null);
 
     function handleMicrocontrollers(data) {
         if (data === null) {
@@ -24,8 +26,10 @@ function MainPage() {
             />
             <ListMicrocontroller
                 microcontrollers={microcontrollers}
+                popup={setPopup}
                 loading={loading}
             />
+            <PopUp popup={popup}/>
         </div>
     );
 }

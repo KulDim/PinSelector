@@ -23,6 +23,16 @@ class TypeController {
         let microcontrollers = await modelsMicrocontrollers.findAll()
         return res.json({ message: microcontrollers, status: 200 });
     }
+
+    async detailsMicrocontroller(req, res) {
+        const id = req.body.id
+        let microcontrollers = await modelsMicrocontrollers.findOne({
+            where: {
+                id: id,
+            }
+        })
+        return res.json({ message: microcontrollers, status: 200 });
+    }
 }
 
 module.exports = new TypeController();

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
+
 import styles from "./ListMicrocontroller.module.css";
 
-function ListMicrocontroller({ microcontrollers, loading }) {
+function ListMicrocontroller({ microcontrollers, popup, loading }) {
     const [search, setSearch] = useState("");
     const [data, setData] = useState(microcontrollers);
 
@@ -14,6 +16,16 @@ function ListMicrocontroller({ microcontrollers, loading }) {
             setData(microcontrollers.filter(item => item.title.includes(search)));
         }
     }, [search]);
+
+    function buttonDetails(e) {
+        const id = e.target.getAttribute("data-id");
+        axios
+            .post("/api/detailsMicrocontroller", {
+                id,
+            })
+            .then(response => response.data)
+            .then(data => popup(data.message));
+    }
 
     return (
         <div>
@@ -45,7 +57,12 @@ function ListMicrocontroller({ microcontrollers, loading }) {
                                 <span>
                                     <span>description: {microcontroller.description}</span>
                                 </span>
-                                <button>Подробней</button>
+                                <button
+                                    data-id={microcontroller.id}
+                                    onClick={buttonDetails}
+                                >
+                                    Подробней
+                                </button>
                             </div>
                         ))}
                     {data.length == 0 && <div>Пусто</div>}
