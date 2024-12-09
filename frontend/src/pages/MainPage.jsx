@@ -29,7 +29,7 @@ function MainPage() {
                 popup={setPopup}
                 loading={loading}
             />
-            <PopUp popup={popup}/>
+            <PopUp popup={popup} setPopup={setPopup} />
         </div>
     );
 }

@@ -65,6 +65,7 @@ function SearchMicrocontroller({handleMicrocontrollers, setLoading}) {
         })
         .then(response => response.data)
         .then(data => handleMicrocontrollers(data));
+        // https://findthechip.com/search?totalpins=10&pin1=3&function1=vpp
     }
 
     return (
