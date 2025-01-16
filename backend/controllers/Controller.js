@@ -30,9 +30,6 @@ class TypeController {
             },
         });
 
-        let searchMicrocontrollerChek = false;
-
-
         microcontrollers.forEach(microcontroller => {
 
             let microcontrollersCheck = []
