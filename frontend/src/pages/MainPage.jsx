@@ -3,6 +3,7 @@ import ListMicrocontroller from "../components/ListMicrocontroller/ListMicrocont
 import PopUp from "../components/PopUp/PopUp";
 import styles from "./MainPage.module.css";
 import { useState } from "react";
+import AddMicrocontroller from "../components/AddMicrocontroller/AddMicrocontroller";
 
 function MainPage() {
     const [microcontrollers, setMicrocontrollers] = useState(null);
@@ -30,6 +31,7 @@ function MainPage() {
                 loading={loading}
             />
             <PopUp popup={popup} setPopup={setPopup} />
+            {/* <AddMicrocontroller></AddMicrocontroller> */}
         </div>
     );
 }
