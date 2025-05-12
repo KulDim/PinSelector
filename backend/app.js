@@ -7,6 +7,13 @@ const app = express();
 app.use(express.json());
 app.use("/api/", routers);
 
+app.use(express.static(__dirname + "/build/"))
+
+
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/build/index.html');
+});
+
 (async () => {
     try {
         await sequelize.authenticate();
